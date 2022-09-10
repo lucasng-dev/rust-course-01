@@ -12,6 +12,7 @@ fn main() {
   println!("É fim de semana? {}", eh_fim_de_semana(DiaDaSemana::Quarta));
 
   cores();
+  conteudo_opcional();
 }
 
 #[allow(dead_code)]
@@ -68,4 +69,19 @@ fn cores() {
       Color::CymkColor { cyan: _, magenta: _, yellow: _, black: _ } => "CYMK desconhecido",
     }
   );
+}
+
+fn conteudo_opcional() {
+  let conteudo_arquivo = let_arquivo(String::from(""));
+
+  match &conteudo_arquivo {
+    Some(valor) => println!("{}", valor),
+    None => println!("Arquivo não existe"),
+  }
+
+  println!("{:?}", &conteudo_arquivo);
+}
+
+fn let_arquivo(caminho: String) -> Option<String> {
+  Some(String::from("Conteúdo do arquivo"))
 }
