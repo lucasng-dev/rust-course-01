@@ -52,7 +52,12 @@ enum Color {
   Green,
   Blue,
   RgbColor(u8, u8, u8),
-  CymkColor { cyan: u8, magenta: u8, yellow: u8, black: u8 },
+  CymkColor {
+    cyan: u8,
+    magenta: u8,
+    yellow: u8,
+    black: u8,
+  },
 }
 
 fn cores() {
@@ -64,12 +69,23 @@ fn cores() {
       Color::Red => "vermelho",
       Color::Green => "verde",
       Color::Blue => "blue",
-      Color::RgbColor(0, 0, 0) | Color::CymkColor { cyan: _, magenta: _, yellow: _, black: 255 } => "preta",
+      Color::RgbColor(0, 0, 0)
+      | Color::CymkColor {
+        cyan: _,
+        magenta: _,
+        yellow: _,
+        black: 255,
+      } => "preta",
       Color::RgbColor(_, green, _) => {
         println!("{}", green);
         "RGB desconhecido"
       }
-      Color::CymkColor { cyan: _, magenta: _, yellow: _, black: _ } => "CYMK desconhecido",
+      Color::CymkColor {
+        cyan: _,
+        magenta: _,
+        yellow: _,
+        black: _,
+      } => "CYMK desconhecido",
     }
   );
 }
@@ -146,10 +162,19 @@ struct Titular {
 }
 
 fn conta_corrente() {
-  let titular = Titular { nome: String::from("Vinicius"), sobrenome: String::from("Dias") };
-  let mut conta: Conta = Conta { titular, saldo: 100.0 };
+  let titular = Titular {
+    nome: String::from("Vinicius"),
+    sobrenome: String::from("Dias"),
+  };
+  let mut conta: Conta = Conta {
+    titular,
+    saldo: 100.0,
+  };
 
   conta.sacar(50.0);
 
-  println!("Dados da conta: Titular = {} {}, Saldo = {}", conta.titular.nome, conta.titular.sobrenome, conta.saldo);
+  println!(
+    "Dados da conta: Titular = {} {}, Saldo = {}",
+    conta.titular.nome, conta.titular.sobrenome, conta.saldo
+  );
 }
